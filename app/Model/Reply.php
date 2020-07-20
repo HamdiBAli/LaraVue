@@ -20,4 +20,5 @@ class Reply extends Model
     {
         return $this->hasMany(Likes::class);
     }
+    protected $guarded = [];
 }

@@ -12,7 +12,7 @@ $factory->define(Question::class, function (Faker $faker) {
     $title = $faker->sentence;
     return [
         'title' => $title,
-        'slug' => Str::slug($title, ' '),
+        'slug' => Str::slug($title),
         'body' => $faker->sentence(),
         'category_id' =>function(){
             return Category::all()->random();

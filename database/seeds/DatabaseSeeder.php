@@ -6,6 +6,7 @@ use App\Model\Question;
 use App\Model\Reply;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +24,10 @@ class DatabaseSeeder extends Seeder
         factory(Reply::class,50)->create()->each(function($reply){
             return $reply->like()->save(factory(Likes::class)->make());
         });
+        User::create([
+            'name' => 'hamdi',
+            'email' => 'hamdi@admin.com',
+            'password' => Hash::make('12345678')
+        ]);
     }
 }

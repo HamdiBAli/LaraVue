@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -15,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','singup']]);
     }
 
     /**
@@ -79,5 +81,14 @@ class AuthController extends Controller
         //     'token_type' => 'bearer',
         //     'expires_in' => 'Auth::factory()->getTTL() * 60'
         // ]);
+    }
+    public function singup(Request $request)
+    {
+        User::create([
+            'name' =>$request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        return $this->login($request);
     }
 }

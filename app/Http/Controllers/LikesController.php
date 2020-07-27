@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class LikesController extends Controller
 {
+          /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
    public function likeIt(Request $request,Reply $reply)
    {
         $reply->like()->create([

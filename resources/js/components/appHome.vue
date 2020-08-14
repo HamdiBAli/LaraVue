@@ -1,7 +1,7 @@
 <template>
     <div>
         <toolBar></toolBar>
-        <h1>Home</h1>
+        <router-view></router-view>
         <app-footer></app-footer>
     </div>
 </template>
